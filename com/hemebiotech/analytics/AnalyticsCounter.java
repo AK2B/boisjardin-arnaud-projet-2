@@ -14,8 +14,8 @@ public class AnalyticsCounter {
 		BufferedReader reader = new BufferedReader (new FileReader("Symptoms.txt"));
 		String line = reader.readLine();
 
-		int i = 0;
-		int headCount = 0;	// counts headaches
+		int i = 0; 
+		int headCount = 0;	//counts headaches
 		while (line != null) {
 			i++;
 			System.out.println("symptom from file: " + line);
