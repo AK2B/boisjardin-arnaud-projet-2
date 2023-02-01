@@ -10,12 +10,12 @@ public class AnalyticsCounter {
 	private static int pupilCount = 0;		
 	
 	public static void main(String args[]) throws Exception {
-		// first get input
+		//  first get input
 		BufferedReader reader = new BufferedReader (new FileReader("Symptoms.txt"));
 		String line = reader.readLine();
 
 		int i = 0; 
-		int headCount = 0;	// counts headaches
+		int headCount = 0;	//  counts headaches
 		while (line != null) {
 			i++;
 			System.out.println("symptom from file: " + line);
