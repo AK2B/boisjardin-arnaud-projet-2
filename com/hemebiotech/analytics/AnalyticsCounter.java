@@ -1,16 +1,12 @@
-package com.hemebiotech.analytics;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+/*package com.hemebiotech.analytics;
 
 public class AnalyticsCounter {
 	private static int headacheCount = 0;	
 	private static int rashCount = 0;		
 	private static int pupilCount = 0;		
 	
-	public static void main(String args[]) throws Exception {
-		//  first get input
+	public static void main(String args[]) throws Exception {    
+    //  first get input
 		BufferedReader reader = new BufferedReader (new FileReader("Symptoms.txt"));
 		String line = reader.readLine();
 
@@ -40,5 +36,30 @@ public class AnalyticsCounter {
 		writer.write("dialated pupils: " + pupilCount + "\n");
 		writer.close();
     reader.close();
+
+
+
+    
 	}
 }
+
+
+public class AnalyticsCounter {
+	private Map<String, Integer> analyticsCounter;		
+	
+	public ReadSymptomDataFromFile (Map<String, Integer> analyticsCounter) {
+		this.analyticsCounter = analyticsCounter;
+	}
+
+		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile(filepath);
+		
+		WriteSymptomDataToFile writer = new WriteSymptomDataToFile(reader.GetSymptoms());
+		writer.SetSymptoms();
+    
+	
+}
+
+
+
+
+*/

@@ -1,10 +1,9 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Simple brute force implementation
@@ -13,7 +12,6 @@ import java.util.List;
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String filepath;
-	
 	/**
 	 * 
 	 * @param filepath a full or partial path to file with symptom strings in it, one per line
@@ -23,25 +21,43 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	}
 	
 	@Override
-	public List<String> getSymptoms() {
-		ArrayList<String> result = new ArrayList<String>();
+	public Map<String, Integer> getSymptoms() {	
 		
-		if (filepath != null) {
-			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
-				String line = reader.readLine();
-				
-				while (line != null) {
-					result.add(line);
-					line = reader.readLine();
-				}
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+        try(Scanner scan = new Scanner(new FileReader(filepath))) { 
+        		
+					Map<String, Integer> occurence = new HashMap<>();
+        		
+					while (scan.hasNextLine()) {
+        			String line = scan.nextLine();
+        			occurence.putIfAbsent(line, 0);
+        			occurence.put(line, occurence.get(line) + 1);	
+        	}		        	
+        		//Ordre alphabétique 
+        		// trier par clé, comparateur  compareByKey
+				 
+			  	Map<String, Integer> result = occurence.entrySet()
+			    		.stream()
+              
+			    		.sorted(Map.Entry.<String, Integer>comparingByKey())
+			    	
+			    	//HashMap doesn't guarantee iteration order, while LinkedHashMap does.
+			    		.collect(Collectors.toMap(
+			    				Map.Entry::getKey, 
+			    				Map.Entry::getValue, 
+			    				(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+							
+							
+			    		System.out.println(result);
+			    		
+							return result;	
+        }		        
+		    				    
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 		
-		return result;
-	}
+		return null ;
 
-}
+		}
+	}
