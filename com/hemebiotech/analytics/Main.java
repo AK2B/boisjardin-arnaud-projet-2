@@ -1,18 +1,20 @@
 package com.hemebiotech.analytics;
 
+import java.util.List;
 import java.util.Map;
 
 public class Main {
 	
 	public static void main(String args[]) throws Exception {
 		// first get input
-		String filepath = "symptoms.txt";
 		
-		ISymptomReader reader = new ReadSymptomDataFromFile(filepath);
 		
-		Map<String, Integer> result = reader.getSymptoms();
-
-		ISymptomWriter writer = new WriteSymptomDataToFile();
-		writer.writeSymptoms(result);
+		AnalyticsCounter analyticsCounter = new AnalyticsCounter(null, null);
+		List<String> result = analyticsCounter.getSymptoms();
+		Map<String, Integer> counter = analyticsCounter.countSymptoms(result);
+		Map<String, Integer> sorter = analyticsCounter.sortSymptoms(counter);
+		analyticsCounter.writeSymptoms(sorter);
+		
+	
 	}
 }
