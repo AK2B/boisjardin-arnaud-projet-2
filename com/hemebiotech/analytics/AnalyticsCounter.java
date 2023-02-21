@@ -10,10 +10,9 @@ import java.util.stream.Collectors;
 public class AnalyticsCounter { 
 
 	private static final String filepath = "symptoms.txt";
-		
+
 	
 	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
-    
    }
 		
   public List<String> getSymptoms() { 
