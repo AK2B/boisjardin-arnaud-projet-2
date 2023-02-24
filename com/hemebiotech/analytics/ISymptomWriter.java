@@ -2,14 +2,15 @@ package com.hemebiotech.analytics;
 
 import java.io.IOException;
 import java.util.Map;
-/**
- * Anything the will write symptom data on a valid data output format
- *
- */
-public interface ISymptomWriter {
 
+/**
+* This functional interface represents a writer for symptom data.
+*/
+@FunctionalInterface
+public interface ISymptomWriter {
   /**
- * @return 
+  * Writes the symptom data to the output.
+  * @param sorter a Map that contains the sorted symptom data to be written.
   */
-public void writeSymptoms(Map<String, Integer> sorter) ;
+  public void writeSymptoms(Map<String, Integer> sorter);
 }
